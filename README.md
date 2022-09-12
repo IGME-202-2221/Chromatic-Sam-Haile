@@ -4,16 +4,16 @@
 
 ### Student Info
 
--   Name: YOUR NAME
--   Section: ##
+-   Name: Samuel Haile
+-   Section: 04
 
 ## Game Design
 
--   Camera Orientation: _How are the art assets viewed from? (ie. topdown or side)_
--   Camera Movement: _How does the camera move in your game? (if at all)_
--   Player Health: _How are you handling player health? (healthbar, lives, ?)_
--   End Condition: _How does a game/round/level end?_
--   Scoring: _How does the player earn points in your game?_
+-   Camera Orientation: Side
+-   Camera Movement: The camera will be stationary
+-   Player Health: The player will have a health bar that depletes when hit
+-   End Condition: When the boss of that level is deafeted
+-   Scoring: Destroying enemies and killing enemies in quick succession 
 
 ### Game Description
 
@@ -22,21 +22,22 @@ _A brief explanation of your game. Inculde what is the objective for the player.
 ### Controls
 
 -   Movement
-    -   Up: 
-    -   Down: 
-    -   Left: 
-    -   Right: 
--   Fire: 
+    -   Up: W
+    -   Down: S 
+    -   Left: A
+    -   Right: D
+-   Fire: Left mouse click
 
 ## You Additions
 
 _List out what you added to your game to make it different for you_
 
 ## Sources
-
--   _List all project sources here –models, textures, sound clips, assets, etc._
--   _If an asset is from the Unity store, include a link to the page and the author’s name_
-
+-   Background
+-   Enemy/Player Ships
+-   Explosions
+-   Power Ups
+-       https://ansimuz.itch.io/spaceship-shooter-environment
 ## Known Issues
 
 _List any errors, lack of error checking, or specific information that I need to know to run your program_
