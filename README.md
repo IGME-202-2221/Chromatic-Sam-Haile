@@ -30,7 +30,7 @@ _A brief explanation of your game. Inculde what is the objective for the player.
 
 ## You Additions
 
-_List out what you added to your game to make it different for you_
+For my game I plan on implementing diffrent color bullets that will only destroy enemies of that same color. Assets will probably have to chane to provide better contrast but that is my main goal.
 
 ## Sources
 -   Background
