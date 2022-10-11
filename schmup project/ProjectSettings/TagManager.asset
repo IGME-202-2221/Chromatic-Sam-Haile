@@ -71,6 +71,9 @@ TagManager:
   - name: TvEffect
     uniqueID: 1653370025
     locked: 0
+  - name: TvEffect2
+    uniqueID: 451426083
+    locked: 0
   - name: UI
     uniqueID: 2429118777
     locked: 0

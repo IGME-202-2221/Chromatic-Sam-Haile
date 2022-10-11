@@ -29,21 +29,21 @@ public class Vehicle : MonoBehaviour
         }
 
         //Wrap around screen
-        if (transform.position.x > 8.25)
+        if (transform.position.x > 8)
         {
-            transform.position = new Vector3(-8.25f,(transform.position.y),0);
+            transform.position = new Vector3(-8f,(transform.position.y),0);
         }
-        else if (transform.position.x < -8.25)
+        else if (transform.position.x < -8)
         {
-            transform.position = new Vector3(8.25f,(transform.position.y), 0);
+            transform.position = new Vector3(8f,(transform.position.y), 0);
         }
-        else if (transform.position.y > 5.5)
+        else if (transform.position.y > 5)
         {
-            transform.position = new Vector3(transform.position.x,-5.5f, 0);
+            transform.position = new Vector3(transform.position.x,-5f, 0);
         }
-        else if (transform.position.y < -5.5)
+        else if (transform.position.y < -5)
         {
-            transform.position = new Vector3(transform.position.x, 5.5f, 0);
+            transform.position = new Vector3(transform.position.x, 5f, 0);
         }
     }
 
