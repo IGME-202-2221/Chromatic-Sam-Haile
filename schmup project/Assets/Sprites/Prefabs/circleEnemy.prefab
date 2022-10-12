@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4968b435742714e42933ac498f119ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 3
   shootingRange: 4
 --- !u!95 &9084074255657170683
 Animator:

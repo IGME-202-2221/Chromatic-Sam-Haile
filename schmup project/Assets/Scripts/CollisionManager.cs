@@ -10,8 +10,11 @@ public class CollisionManager : MonoBehaviour
     public List<SpriteRenderer> sprites = new List<SpriteRenderer>();
 
     public CollidableObject player;
+    public GameObject playerObject;
     public RotateAround bullet;
 
+
+    private Health health;
     #region EnemySpawnFields
     [SerializeField]
     //Type of enemies
@@ -23,12 +26,16 @@ public class CollisionManager : MonoBehaviour
     private Vector3 spawnPosition;
     #endregion
 
+    private void Awake()
+    {
+        health = player.GetComponent<Health>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
         // calls spawn method every two seconds
-        InvokeRepeating("SpawnNewEnemy", 0f, 5f);
+        InvokeRepeating("SpawnNewEnemy", 0f, 2f);
     }
 
     void Update()
@@ -69,6 +76,7 @@ public class CollisionManager : MonoBehaviour
                             if (distance < radius + radius2)
                             {
                                 collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
+                                health.TakeDamage();
                                 //destroy the game object
                                 Destroy(collidableObjects[sprite].GetComponent<GameObject>());
                                 //destroy the light child object attached
@@ -98,7 +106,7 @@ public class CollisionManager : MonoBehaviour
                                     sprites[0].bounds.min.y < sprites[sprite].bounds.max.y)
                             {
                                 collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
-
+                                health.TakeDamage();
                                 //destroy the game object
                                 Destroy(collidableObjects[sprite].GetComponent<GameObject>());
                                 //destroy the light child object attached
