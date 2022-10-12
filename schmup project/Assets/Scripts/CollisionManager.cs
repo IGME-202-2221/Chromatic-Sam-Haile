@@ -139,6 +139,7 @@ public class CollisionManager : MonoBehaviour
                             item.GetComponent<SpriteRenderer>().bounds.min.y < sprites[sprite].bounds.max.y &&
                             sprites[sprite].tag == "Circle")
                         {
+                            collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
                             Destroy(item);
                             //destroy the game object
                             Destroy(collidableObjects[sprite].GetComponent<GameObject>());
@@ -159,7 +160,9 @@ public class CollisionManager : MonoBehaviour
                             item.GetComponent<SpriteRenderer>().bounds.max.y > sprites[sprite].bounds.min.y &&
                             item.GetComponent<SpriteRenderer>().bounds.min.y < sprites[sprite].bounds.max.y &&
                             sprites[sprite].tag == "Square")
-                        { 
+                        {
+
+                            collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
                             Destroy(item);
                             //destroy the game object
                             Destroy(collidableObjects[sprite].GetComponent<GameObject>());

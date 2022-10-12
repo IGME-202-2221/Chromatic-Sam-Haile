@@ -14,6 +14,7 @@ public class CollidableObject : MonoBehaviour
     private EnemyFollow range;
     public GameObject gameLight;
 
+    public ScoreScript scoreScript;
     private void Awake()
     {
         range = GetComponent<EnemyFollow>();
@@ -34,6 +35,16 @@ public class CollidableObject : MonoBehaviour
 
     public void RegisterCollision(CollidableObject other)
     {
+        //100 points for circle
+        if (other.tag == "Circle")
+        {
+            scoreScript.scoreNum += 100;
+        }
+        // 200 points for square
+        else if(other.tag == "Square")
+        {
+            scoreScript.scoreNum += 200;
+        }
         isCurrentlyColliding = true;
         collisions.Add(other);
     }
