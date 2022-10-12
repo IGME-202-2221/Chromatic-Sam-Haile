@@ -18,7 +18,7 @@ public class EnemyFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;    
+            player = GameObject.FindGameObjectWithTag("Player").transform;    
     }
 
     // Update is called once per frame
@@ -43,6 +43,8 @@ public class EnemyFollow : MonoBehaviour
         }
         transform.position = Vector2.MoveTowards(this.transform.position, player.position, speed*Time.deltaTime);
     }
+
+
 
     private void OnDrawGizmosSelected()
     {

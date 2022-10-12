@@ -12,6 +12,17 @@ public class Health : MonoBehaviour
     public Sprite fullHeart;
     public Sprite emptyHeart;
 
+    public Animator animator;
+    public EnemyFollow speed;
+    public CollisionManager collisionManager;
+    public Vehicle vehicle;
+    public GameObject arrow;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+        vehicle = GetComponent<Vehicle>();
+    }
     private void Update()
     {
         for (int i = 0; i < hearts.Length; i++)
@@ -55,6 +66,12 @@ public class Health : MonoBehaviour
 
     public void GameOver()
     {
+        // player death animation
+        animator.SetBool("isDead", true);
+        //hide arrow and prevent shooting
+        arrow.SetActive(false);
+        // stop moving
+        vehicle.speed = 0;
         Debug.Log("GameOver");
     }
 }

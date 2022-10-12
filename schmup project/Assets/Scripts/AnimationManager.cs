@@ -8,13 +8,7 @@ public class AnimationManager : MonoBehaviour
 
     public void Die()
     {
-        
         animator.SetTrigger("isDead");
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

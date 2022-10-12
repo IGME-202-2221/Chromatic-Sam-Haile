@@ -8,7 +8,6 @@ public class CollisionManager : MonoBehaviour
     //Store all collidable ojbects in scene
     public List<CollidableObject> collidableObjects = new List<CollidableObject>();
     public List<SpriteRenderer> sprites = new List<SpriteRenderer>();
-
     public CollidableObject player;
     public GameObject playerObject;
     public RotateAround bullet;
@@ -177,6 +176,10 @@ public class CollisionManager : MonoBehaviour
                 }
                 #endregion
             }
+        }
+        if (health.health == 0)
+        {
+            
         }
     }
 

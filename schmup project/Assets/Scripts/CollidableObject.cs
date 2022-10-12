@@ -12,7 +12,6 @@ public class CollidableObject : MonoBehaviour
     public List<CollidableObject> collisions = new List<CollidableObject>();
 
     private EnemyFollow range;
-
     public GameObject gameLight;
 
     private void Awake()
