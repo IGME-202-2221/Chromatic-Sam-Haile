@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 117.93, y: -43}
+  m_AnchoredPosition: {x: 117.93003, y: -43}
   m_SizeDelta: {x: 321.85, y: 50.99}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &189222800
@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143f6c213bde96244a383a3ab2a899a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4
+  health: 1
   numOfHearts: 4
   hearts:
   - {fileID: 1094726780}
@@ -1849,6 +1849,7 @@ MonoBehaviour:
   player: {fileID: 439110989}
   playerObject: {fileID: 439110984}
   bullet: {fileID: 1707642849}
+  gameOverScreen: {fileID: 0}
   enemies:
   - {fileID: 2251496441346206587, guid: 7bbc508dc950be44db8c735a48195b71, type: 3}
   - {fileID: 2601255316665759652, guid: 843235e444386ca458e6ed4cdfe5b116, type: 3}
@@ -1892,7 +1893,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1400545125}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -47.1, y: 3.4, z: -5399.9995}
+  m_LocalPosition: {x: -47.100006, y: 3.399994, z: -5399.9995}
   m_LocalScale: {x: 118.5, y: 36, z: 60}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2389,9 +2390,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557316274}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.216134, y: 2.7915943, z: 172.5341}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.216134, y: 2.7915945, z: 172.5341}
+  m_LocalScale: {x: 0.99999994, y: 0.99999994, z: 0.99999994}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}

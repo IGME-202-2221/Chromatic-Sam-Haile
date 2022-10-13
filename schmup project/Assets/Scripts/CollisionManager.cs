@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CollisionManager : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class CollisionManager : MonoBehaviour
 
 
     private Health health;
+    public GameOverScreen gameOverScreen;
     #region EnemySpawnFields
     [SerializeField]
     //Type of enemies
@@ -74,7 +76,7 @@ public class CollisionManager : MonoBehaviour
                             // collision
                             if (distance < radius + radius2)
                             {
-                                collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
+                                //collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
                                 health.TakeDamage();
                                 //destroy the game object
                                 Destroy(collidableObjects[sprite].GetComponent<GameObject>());
@@ -104,7 +106,7 @@ public class CollisionManager : MonoBehaviour
                                     sprites[0].bounds.max.y > sprites[sprite].bounds.min.y &&
                                     sprites[0].bounds.min.y < sprites[sprite].bounds.max.y)
                             {
-                                collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
+                                //collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
                                 health.TakeDamage();
                                 //destroy the game object
                                 Destroy(collidableObjects[sprite].GetComponent<GameObject>());
@@ -182,7 +184,7 @@ public class CollisionManager : MonoBehaviour
         }
         if (health.health == 0)
         {
-            
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
