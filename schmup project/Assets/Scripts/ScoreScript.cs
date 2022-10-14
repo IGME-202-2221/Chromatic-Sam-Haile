@@ -8,22 +8,29 @@ public class ScoreScript : MonoBehaviour
 {
     public Text myScoreText;
     public Text gameOverScore;
+    public Text highscore;
     public static int scoreNum;
-
-    void Start()
-    {
-        scoreNum = 0;
-    }
+    public static int highscoreNum;
 
     void Update()
     {
+        // print score on top right of window
         if (myScoreText != null)
         {
-            myScoreText.text = "Score:  " + scoreNum;
+            myScoreText.text = "Score:  " + ScoreScript.scoreNum;
         }
-        else if (gameOverScore != null)
+        // prints score on game over screen
+        if (gameOverScore != null)
         {
-            gameOverScore.text = "ASFDADSA" + scoreNum.ToString();
+            int points = ScoreScript.scoreNum;
+            gameOverScore.text = "Score: " + points.ToString();
         }
+        // prints highscore
+        if (highscore != null)
+        {
+            int highscoreNumber = ScoreScript.highscoreNum;
+            highscore.text = "Highscore: " + highscoreNumber.ToString();
+        }
+
     }
 }

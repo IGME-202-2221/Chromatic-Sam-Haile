@@ -135,10 +135,7 @@ public class CollisionManager : MonoBehaviour
                     // and for each bullet in the queue
                     foreach (GameObject item in bullet.greenBulletQueue.ToList())
                     {
-                        if (item != null && item.GetComponent<SpriteRenderer>().bounds.min.x < sprites[sprite].bounds.max.x &&
-                            item.GetComponent<SpriteRenderer>().bounds.max.x > sprites[sprite].bounds.min.x &&
-                            item.GetComponent<SpriteRenderer>().bounds.max.y > sprites[sprite].bounds.min.y &&
-                            item.GetComponent<SpriteRenderer>().bounds.min.y < sprites[sprite].bounds.max.y &&
+                        if (item != null && CollisionCheck(item, sprite) == true &&
                             sprites[sprite].tag == "Circle")
                         {
                             collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
@@ -154,16 +151,19 @@ public class CollisionManager : MonoBehaviour
                             sprites[sprite] = null;
                             sprites.RemoveAt(sprite);
                         }
+                        // Penalty if the player hits the wrong enemy with green bullet
+                        else if(item != null && CollisionCheck(item, sprite) == true &&
+                            sprites[sprite].tag == "Square")
+                        {
+                            Debug.Log("WHATTTT");
+                        }
                     }
                     foreach (GameObject item in bullet.redBulletQueue.ToList())
                     {
-                        if (item != null && item.GetComponent<SpriteRenderer>().bounds.min.x < sprites[sprite].bounds.max.x &&
-                            item.GetComponent<SpriteRenderer>().bounds.max.x > sprites[sprite].bounds.min.x &&
-                            item.GetComponent<SpriteRenderer>().bounds.max.y > sprites[sprite].bounds.min.y &&
-                            item.GetComponent<SpriteRenderer>().bounds.min.y < sprites[sprite].bounds.max.y &&
+                        if (item != null && CollisionCheck(item, sprite) &&
                             sprites[sprite].tag == "Square")
                         {
-
+                            Debug.Log("Working");
                             collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
                             Destroy(item);
                             //destroy the game object
@@ -177,6 +177,8 @@ public class CollisionManager : MonoBehaviour
                             sprites[sprite] = null;
                             sprites.RemoveAt(sprite);
                         }
+                        //ADD ELSE STATEMENT TO HANDLE GREEN BULLET
+                        // CHECK OTHER COLLISIONS AND USE THE NEW METHOD
                     }
                 }
                 #endregion
@@ -185,6 +187,21 @@ public class CollisionManager : MonoBehaviour
         if (health.health == 0)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+    }
+
+    public bool CollisionCheck(GameObject item, int sprite)
+    {
+        if (item.GetComponent<SpriteRenderer>().bounds.min.x < sprites[sprite].bounds.max.x &&
+                            item.GetComponent<SpriteRenderer>().bounds.max.x > sprites[sprite].bounds.min.x &&
+                            item.GetComponent<SpriteRenderer>().bounds.max.y > sprites[sprite].bounds.min.y &&
+                            item.GetComponent<SpriteRenderer>().bounds.min.y < sprites[sprite].bounds.max.y)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 

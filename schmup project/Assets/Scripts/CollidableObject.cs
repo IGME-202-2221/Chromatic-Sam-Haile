@@ -39,11 +39,19 @@ public class CollidableObject : MonoBehaviour
         if (other.tag == "Circle")
         {
             ScoreScript.scoreNum += 100;
+            if (ScoreScript.highscoreNum < ScoreScript.scoreNum)
+            {
+                ScoreScript.highscoreNum = ScoreScript.scoreNum;
+            }
         }
         // 200 points for square
         else if(other.tag == "Square")
         {
             ScoreScript.scoreNum += 200;
+            if (ScoreScript.highscoreNum < ScoreScript.scoreNum)
+            {
+                ScoreScript.highscoreNum = ScoreScript.scoreNum;
+            }
         }
         isCurrentlyColliding = true;
         collisions.Add(other);

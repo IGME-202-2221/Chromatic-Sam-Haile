@@ -12,13 +12,12 @@ public class GameOverScreen : MonoBehaviour
     public void Setup()
     {
         //gameObject.SetActive(true);
-        pointsText.text = scoreScript.gameOverScore.ToString();
-        Debug.Log("AVASDCASDC");
-
+        //pointsText.text = scoreScript.gameOverScore.ToString();
     }
 
     public void Restart()
     {
+        ScoreScript.scoreNum = 0;
         SceneManager.LoadScene(1);
     }
 
