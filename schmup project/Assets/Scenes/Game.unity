@@ -594,11 +594,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c6c5c386c198a429f59cde8c1f83bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCurrentlyColliding: 0
   sprite: {fileID: 439110985}
-  collisions: []
   gameLight: {fileID: 1247506252}
   scoreScript: {fileID: 1557316275}
+  collisions: []
+  isCurrentlyColliding: 0
 --- !u!114 &439110990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -611,7 +611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 143f6c213bde96244a383a3ab2a899a0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 4
+  health: 1
   numOfHearts: 4
   hearts:
   - {fileID: 1094726780}
@@ -1087,7 +1087,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1865848519
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ee78b7e7f1e8fb543808aed318836fa7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2499,17 +2499,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 335f7ede2fbd86646b86f8930492a993, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  collidableObjects:
-  - {fileID: 439110989}
-  sprites:
-  - {fileID: 439110985}
   player: {fileID: 439110989}
   playerObject: {fileID: 439110984}
   bullet: {fileID: 1707642849}
   gameOverScreen: {fileID: 0}
+  animationManager: {fileID: 1941037778}
+  collidableObjects:
+  - {fileID: 439110989}
+  sprites:
+  - {fileID: 439110985}
   enemies:
-  - {fileID: 2251496441346206587, guid: 7bbc508dc950be44db8c735a48195b71, type: 3}
   - {fileID: 2601255316665759652, guid: 843235e444386ca458e6ed4cdfe5b116, type: 3}
+  - {fileID: 2251496441346206587, guid: 7bbc508dc950be44db8c735a48195b71, type: 3}
+  - {fileID: 4875919436262526508, guid: 87a233c5c91748c40979fca9a71cc9ea, type: 3}
 --- !u!4 &1308638671
 Transform:
   m_ObjectHideFlags: 0
@@ -3115,7 +3117,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 451426083
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 3
   m_Sprite: {fileID: 21300000, guid: 1b8baee304c14ea41a2c7bd5379fb8a6, type: 3}
   m_Color: {r: 0.5754717, g: 0.5754717, b: 0.5754717, a: 0.24705882}
@@ -3465,7 +3467,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c948e9e44ad9d34daf60ef6399bb0fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  playerAnimator: {fileID: 439110991}
+  circleAnimator: {fileID: 9084074255657170683, guid: 843235e444386ca458e6ed4cdfe5b116, type: 3}
 --- !u!4 &1941037779
 Transform:
   m_ObjectHideFlags: 0

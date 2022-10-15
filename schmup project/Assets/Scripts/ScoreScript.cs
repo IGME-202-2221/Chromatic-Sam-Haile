@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class ScoreScript : MonoBehaviour
 {
+    // SCORE FIELDS
     public Text myScoreText;
     public Text gameOverScore;
     public Text highscore;
@@ -29,8 +30,7 @@ public class ScoreScript : MonoBehaviour
         if (highscore != null)
         {
             int highscoreNumber = ScoreScript.highscoreNum;
-            highscore.text = "Highscore: " + highscoreNumber.ToString();
+            highscore.text = "Hi-score: " + highscoreNumber.ToString();
         }
-
     }
 }

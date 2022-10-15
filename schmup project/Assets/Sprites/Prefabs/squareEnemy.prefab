@@ -48,10 +48,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34c6c5c386c198a429f59cde8c1f83bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isCurrentlyColliding: 0
   sprite: {fileID: 2251496441346206586}
-  collisions: []
   gameLight: {fileID: 2251496442734540466}
+  scoreScript: {fileID: 0}
+  collisions: []
+  isCurrentlyColliding: 0
 --- !u!212 &2251496441346206586
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -116,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4968b435742714e42933ac498f119ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4.5
+  speed: 0
   shootingRange: 0
 --- !u!1 &2251496442734540466
 GameObject:

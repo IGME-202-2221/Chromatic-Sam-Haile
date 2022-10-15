@@ -23,24 +23,28 @@ public class Vehicle : MonoBehaviour
         //Add our velocity to our position
         transform.position += (Vector3)velocity;
 
-        if (direction!= Vector2.zero)
+        if (direction != Vector2.zero)
         {
             transform.rotation = Quaternion.LookRotation(Vector3.forward, direction);
         }
 
         //Wrap around screen
-        if (transform.position.x > 8)
+        // Right side of screen
+        if (transform.position.x > 6.25)
         {
-            transform.position = new Vector3(-8f,(transform.position.y),0);
+            transform.position = new Vector3(-6.25f, (transform.position.y), 0);
         }
-        else if (transform.position.x < -8)
+        //Left side of screen
+        else if (transform.position.x < -6.25)
         {
-            transform.position = new Vector3(8f,(transform.position.y), 0);
+            transform.position = new Vector3(6.25f, (transform.position.y), 0);
         }
+        //Top of screen
         else if (transform.position.y > 5)
         {
-            transform.position = new Vector3(transform.position.x,-5f, 0);
+            transform.position = new Vector3(transform.position.x, -5f, 0);
         }
+        //Bottom of screen
         else if (transform.position.y < -5)
         {
             transform.position = new Vector3(transform.position.x, 5f, 0);

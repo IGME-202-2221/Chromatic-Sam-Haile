@@ -23,6 +23,9 @@ public class Health : MonoBehaviour
         animator = GetComponent<Animator>();
         vehicle = GetComponent<Vehicle>();
     }
+    /// <summary>
+    /// Checks whether a heart icon can be removed
+    /// </summary>
     private void Update()
     {
         for (int i = 0; i < hearts.Length; i++)
@@ -41,7 +44,7 @@ public class Health : MonoBehaviour
             {
                 hearts[i].sprite = emptyHeart;
             }
-            if (i< numOfHearts)
+            if (i < numOfHearts)
             {
                 hearts[i].enabled = true;
             }
@@ -51,7 +54,9 @@ public class Health : MonoBehaviour
             }
         }
     }
-
+    /// <summary>
+    /// Reduce health when damage is taken
+    /// </summary>
     public void TakeDamage()
     {
         if (health > 0)
@@ -64,14 +69,15 @@ public class Health : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Before the game over screen
+    /// player cannot move and arrow dissapears
+    /// </summary>
     public void GameOver()
     {
-        // player death animation
-        animator.SetBool("isDead", true);
         //hide arrow and prevent shooting
         arrow.SetActive(false);
         // stop moving
         vehicle.speed = 0;
-        Debug.Log("GameOver");
     }
 }

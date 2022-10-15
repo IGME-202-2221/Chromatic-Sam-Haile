@@ -6,7 +6,7 @@ using UnityEngine.Rendering;
 
 public class RotateAround : MonoBehaviour
 {
-
+    // Player fields
     public GameObject player;
     private Vector3 v3Pos;
     private float angle;
@@ -20,11 +20,8 @@ public class RotateAround : MonoBehaviour
     private float timer;
     private float secondTimer;
     public float timeBetweenFiring;
-
     public Queue<GameObject> greenBulletQueue = new Queue<GameObject>();
     public Queue<GameObject> redBulletQueue = new Queue<GameObject>();
-
-
     public EnemyFollow enemyFollow;
 
     void Update()
@@ -34,7 +31,7 @@ public class RotateAround : MonoBehaviour
         v3Pos.z = (player.transform.position.z - Camera.main.transform.position.z);
         v3Pos = Camera.main.ScreenToWorldPoint(v3Pos);
         v3Pos = v3Pos - player.transform.position;
-        angle = Mathf.Atan2(v3Pos.y, v3Pos.x)* Mathf.Rad2Deg;
+        angle = Mathf.Atan2(v3Pos.y, v3Pos.x) * Mathf.Rad2Deg;
 
         if (angle < 0.0f) angle += 360.0f;
         transform.localEulerAngles = new Vector3(0, 0, angle);
@@ -56,11 +53,11 @@ public class RotateAround : MonoBehaviour
                 {
                     // remove the bullet after 2 seconds if it has not collided with enemy
                     secondTimer += Time.deltaTime;
-                    if (secondTimer>2f)
+                    if (secondTimer > 2f)
                     {
-                       greenBulletQueue.Dequeue();
+                        greenBulletQueue.Dequeue();
                     }
-                    
+
                 }
                 // if there are red bullets
                 else if (redBulletQueue.Count > 0)
@@ -85,9 +82,6 @@ public class RotateAround : MonoBehaviour
             canFire = false;
             var cloneBullet = Instantiate(greenBullet, bulletTransform.position, Quaternion.identity);
             greenBulletQueue.Enqueue(cloneBullet);
-            //greenBulletSprites.Add(cloneBullet);
-            //bulletSprites.Add(cloneBullet.GetComponent<SpriteRenderer>());
-            //greenColliadble.Add(cloneBullet.GetComponent<CollidableObject>());
         }
         // if right click fire red bullet
         else if (Input.GetMouseButton(1) && canFire)
@@ -95,9 +89,6 @@ public class RotateAround : MonoBehaviour
             canFire = false;
             var cloneBullet = Instantiate(redBullet, bulletTransform.position, Quaternion.identity);
             redBulletQueue.Enqueue(cloneBullet);
-            //redBulletSprites.Add(cloneBullet);
-            //redBulletSprites.Add(cloneBullet.GetComponent<SpriteRenderer>());
-            //redCollidable.Add(cloneBullet.GetComponent<CollidableObject>());
         }
     }
 }

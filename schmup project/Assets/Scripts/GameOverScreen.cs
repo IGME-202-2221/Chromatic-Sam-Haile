@@ -9,12 +9,6 @@ public class GameOverScreen : MonoBehaviour
     public Text pointsText;
     public ScoreScript scoreScript;
 
-    public void Setup()
-    {
-        //gameObject.SetActive(true);
-        //pointsText.text = scoreScript.gameOverScore.ToString();
-    }
-
     public void Restart()
     {
         ScoreScript.scoreNum = 0;
@@ -25,8 +19,4 @@ public class GameOverScreen : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
-
-
-
-
 }

@@ -4,35 +4,31 @@ using UnityEngine;
 
 public class CollidableObject : MonoBehaviour
 {
-    public bool isCurrentlyColliding = false;
-
     public SpriteRenderer sprite;
-
+    public GameObject gameLight;
+    public ScoreScript scoreScript;
     [HideInInspector]
     public List<CollidableObject> collisions = new List<CollidableObject>();
-
-    private EnemyFollow range;
-    public GameObject gameLight;
-
-    public ScoreScript scoreScript;
-    private void Awake()
-    {
-        range = GetComponent<EnemyFollow>();
-    }
+    public bool isCurrentlyColliding = false;
 
     void Update()
     {
         // if im currently colliding, turn me red  
         if (isCurrentlyColliding == true )
         {
-            sprite.color = Color.red;
+            //play hurt animation
+            //sprite.color = Color.red;
         }
         else if (sprite)
         {
             sprite.color = Color.white;
         }
     }
-
+    /// <summary>
+    /// Add to score when enemies are destroyed
+    /// Only triggers when shot, player colliding does not award points
+    /// </summary>
+    /// <param name="other"> The object the player is colliding with</param>
     public void RegisterCollision(CollidableObject other)
     {
         //100 points for circle
@@ -56,6 +52,7 @@ public class CollidableObject : MonoBehaviour
         isCurrentlyColliding = true;
         collisions.Add(other);
     }
+
     public void ResetCollision()
     {
         isCurrentlyColliding = false;
