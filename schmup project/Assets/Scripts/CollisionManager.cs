@@ -13,7 +13,6 @@ public class CollisionManager : MonoBehaviour
     public GameObject playerObject;
     public RotateAround bullet;
 
-
     private Health health;
     public GameOverScreen gameOverScreen;
     #region EnemySpawnFields
@@ -36,7 +35,7 @@ public class CollisionManager : MonoBehaviour
     void Start()
     {
         // calls spawn method every two seconds
-        InvokeRepeating("SpawnNewEnemy", 0f, 2f);
+        InvokeRepeating("SpawnNewEnemy", 0f, 1f);
     }
 
     void Update()
@@ -78,21 +77,9 @@ public class CollisionManager : MonoBehaviour
                             {
                                 //collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
                                 health.TakeDamage();
-                                //destroy the game object
-                                Destroy(collidableObjects[sprite].GetComponent<GameObject>());
-                                //destroy the light child object attached
-                                Destroy(collidableObjects[sprite].GetComponent<Light>());
-                                collidableObjects[sprite] = null;
-                                collidableObjects.RemoveAt(sprite);
-                                // destroy the sprite renderer
-                                Destroy(sprites[sprite]);
-                                sprites[sprite] = null;
-                                sprites.RemoveAt(sprite);
-
-
+                                DestroyObject(sprite);
                             }
                         }
-
                     }
                     //If the enemy is a square, use the rectangle collision and destory object
                     // also damage the player
@@ -109,15 +96,7 @@ public class CollisionManager : MonoBehaviour
                                 //collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
                                 health.TakeDamage();
                                 //destroy the game object
-                                Destroy(collidableObjects[sprite].GetComponent<GameObject>());
-                                //destroy the light child object attached
-                                Destroy(collidableObjects[sprite].GetComponent<Light>());
-                                collidableObjects[sprite] = null;
-                                collidableObjects.RemoveAt(sprite);
-                                // destroy the sprite renderer
-                                Destroy(sprites[sprite]);
-                                sprites[sprite] = null;
-                                sprites.RemoveAt(sprite);
+                                DestroyObject(sprite);
                             }
                         }
                     }
@@ -132,54 +111,43 @@ public class CollisionManager : MonoBehaviour
                 // for each enemy instantiated in the game
                 for (int sprite = 0; sprite < collidableObjects.Count; sprite++)
                 {
-                    // and for each bullet in the queue
-                    foreach (GameObject item in bullet.greenBulletQueue.ToList())
-                    {
-                        if (item != null && CollisionCheck(item, sprite) == true &&
-                            sprites[sprite].tag == "Circle")
-                        {
+                      // and for each bullet in the queue
+                      foreach (GameObject item in bullet.greenBulletQueue.ToList())
+                      {
+                          if (item != null && CollisionCheck(item, sprite) == true &&
+                              sprites[sprite].tag == "Circle")
+                          {
                             collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
                             Destroy(item);
-                            //destroy the game object
-                            Destroy(collidableObjects[sprite].GetComponent<GameObject>());
-                            //destroy the light child object attached
-                            Destroy(collidableObjects[sprite].gameLight);
-                            collidableObjects[sprite] = null;
-                            collidableObjects.RemoveAt(sprite);
-                            // destroy the sprite renderer
-                            Destroy(sprites[sprite]);
-                            sprites[sprite] = null;
-                            sprites.RemoveAt(sprite);
-                        }
-                        // Penalty if the player hits the wrong enemy with green bullet
-                        else if(item != null && CollisionCheck(item, sprite) == true &&
-                            sprites[sprite].tag == "Square")
-                        {
-                            Debug.Log("WHATTTT");
-                        }
-                    }
-                    foreach (GameObject item in bullet.redBulletQueue.ToList())
-                    {
-                        if (item != null && CollisionCheck(item, sprite) &&
-                            sprites[sprite].tag == "Square")
-                        {
-                            Debug.Log("Working");
+                            DestroyObject(sprite);
+                          }
+                          // Penalty if the player hits the wrong enemy with green bullet
+                          else if(item != null && CollisionCheck(item, sprite) == true &&
+                              sprites[sprite].tag == "Square")
+                          {
+                            // When a square is hit with a green bullet
+                            // increase its size but lower its speed.
+                            collidableObjects[sprite].GetComponent<EnemyFollow>().speed = 1;
+                            collidableObjects[sprite].transform.localScale = new Vector3(2f, 2f, 0f);
+                          }
+                      }
+                      foreach (GameObject item in bullet.redBulletQueue.ToList())
+                      {
+                          if (item != null && CollisionCheck(item, sprite) &&
+                              sprites[sprite].tag == "Square")
+                          {
                             collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
                             Destroy(item);
-                            //destroy the game object
-                            Destroy(collidableObjects[sprite].GetComponent<GameObject>());
-                            //destroy the light child object attached
-                            Destroy(collidableObjects[sprite].gameLight);
-                            collidableObjects[sprite] = null;
-                            collidableObjects.RemoveAt(sprite);
-                            // destroy the sprite renderer
-                            Destroy(sprites[sprite]);
-                            sprites[sprite] = null;
-                            sprites.RemoveAt(sprite);
-                        }
-                        //ADD ELSE STATEMENT TO HANDLE GREEN BULLET
-                        // CHECK OTHER COLLISIONS AND USE THE NEW METHOD
-                    }
+                            DestroyObject(sprite);
+                          }
+                          else if( item != null && CollisionCheck(item, sprite) == true &&
+                              sprites[sprite].tag == "Circle")
+                          {
+                            // when a circle is hit with a red bullet
+                            // increase its speed
+                            collidableObjects[sprite].GetComponent<EnemyFollow>().speed = 5;
+                          }
+                      }
                 }
                 #endregion
             }
@@ -188,6 +156,20 @@ public class CollisionManager : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
+    }
+
+    public void DestroyObject(int sprite)
+    {
+        // Destroy the game object
+        Destroy(collidableObjects[sprite].GetComponent<GameObject>());
+        // Destroy the child object that creates light effect
+        Destroy(collidableObjects[sprite].gameLight);
+        collidableObjects[sprite] = null;
+        collidableObjects.RemoveAt(sprite);
+        // destroy the sprite renderer
+        Destroy(sprites[sprite]);
+        sprites[sprite] = null;
+        sprites.RemoveAt(sprite);
     }
 
     public bool CollisionCheck(GameObject item, int sprite)
@@ -204,8 +186,6 @@ public class CollisionManager : MonoBehaviour
             return false;
         }
     }
-
-
 
     private void SpawnNewEnemy()
     {
