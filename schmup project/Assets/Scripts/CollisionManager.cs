@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 using UnityEngine.SceneManagement;
 using static UnityEditor.Progress;
 
@@ -17,6 +18,7 @@ public class CollisionManager : MonoBehaviour
     public GameOverScreen gameOverScreen;
     public AnimationManager animationManager;
     float timer = 1f;
+    float timerTwo;
 
     //Enemy Fields
     public List<CollidableObject> collidableObjects = new List<CollidableObject>();
@@ -56,24 +58,24 @@ public class CollisionManager : MonoBehaviour
         {
 
             // if the enemy is a circle, use the circle collision and destroy object
-            if (CircleCollision(collidableObject) == true 
+            if (CircleCollision(collidableObject) == true
                 && collidableObjects[collidableObject].tag == "Circle")
             {
                 // Circle collision
-                    health.TakeDamage();
-                    DestroyObject(collidableObject);
+                health.TakeDamage();
+                DestroyObject(collidableObject);
             }
             else if (CircleCollision(collidableObject) == true
                 && collidableObjects[collidableObject].tag == "item")
             {
-                    health.health = 4;
-                    DestroyObject(collidableObject);
+                health.health = 4;
+                DestroyObject(collidableObject);
             }
             else if (AABBCollision(collidableObject) == true
                 && collidableObjects[collidableObject].tag == "Square")
             {
-                    health.TakeDamage();
-                    DestroyObject(collidableObject);
+                health.TakeDamage();
+                DestroyObject(collidableObject);
             }
         }
         #endregion
@@ -94,6 +96,7 @@ public class CollisionManager : MonoBehaviour
                     {
                         collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
                         animationManager.circleDie();
+                        RainbowEffect();
                         Destroy(item);
                         DestroyObject(sprite);
                     }
@@ -133,17 +136,53 @@ public class CollisionManager : MonoBehaviour
         if (health.health == 0)
         {
             animationManager.Die();
-            if (timer > 0)
+            do
             {
-                timer -= Time.deltaTime;
-            }
-            else
+                Timer(5f);
+
+            } while (false);
+            /*else
             {
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }
+            }*/
         }
     }
 
+    public bool Timer(float time)
+    {
+        do
+        {
+            timer -= Time.deltaTime;
+            Debug.Log(time);
+
+        } while (time > 0);
+
+        if (time <= 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public void RainbowEffect()
+    {
+        Debug.Log("Trying to color switrc");
+        int i = 0;
+        do
+        {
+            Color newColor = new Color(Random.value,
+                                       Random.value,
+                                       Random.value);
+            playerObject.GetComponent<CollidableObject>().gameLight.gameObject.GetComponent<Light2D>().color = newColor;
+            Debug.Log(i);
+            i++;
+        } while (i < 100);
+
+
+    }
     /// <summary>
     /// Check for collision using circle collision
     /// </summary>

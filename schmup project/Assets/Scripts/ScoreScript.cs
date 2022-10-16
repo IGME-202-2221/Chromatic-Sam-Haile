@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class ScoreScript : MonoBehaviour
 {
-    // SCORE FIELDS
     public Text myScoreText;
     public Text gameOverScore;
     public Text highscore;

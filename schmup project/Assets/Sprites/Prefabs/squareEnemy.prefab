@@ -117,7 +117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4968b435742714e42933ac498f119ee2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
+  speed: 3.5
   shootingRange: 0
 --- !u!1 &2251496442734540466
 GameObject:
