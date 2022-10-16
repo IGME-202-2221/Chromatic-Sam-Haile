@@ -29,10 +29,14 @@ public class CollisionManager : MonoBehaviour
     private int randomSpawnZone;
     private float randomXposition, randomYposition;
     private Vector3 spawnPosition;
+    public GameObject arrow;
+    float secondTime;
+    float timeDelay;
 
     private void Awake()
     {
         health = player.GetComponent<Health>();
+
     }
 
     // Start is called before the first frame update
@@ -40,6 +44,9 @@ public class CollisionManager : MonoBehaviour
     {
         // calls spawn method every two seconds
         InvokeRepeating("SpawnNewEnemy", 0f, 1f);
+
+        secondTime = 0f;
+        timeDelay = 5f;
     }
 
     void Update()
@@ -62,19 +69,29 @@ public class CollisionManager : MonoBehaviour
                 && collidableObjects[collidableObject].tag == "Circle")
             {
                 // Circle collision
-                health.TakeDamage();
+                //health.TakeDamage();
+                DestroyObject(collidableObject);
+                //RainbowEffect();
+            }
+            else if (CircleCollision(collidableObject) == true
+                && collidableObjects[collidableObject].tag == "healthPack")
+            {
+                health.health = 4;
                 DestroyObject(collidableObject);
             }
             else if (CircleCollision(collidableObject) == true
                 && collidableObjects[collidableObject].tag == "item")
             {
+                //Rainbow();
+                arrow.GetComponent<RotateAround>().timeBetweenFiring = .1f;
+
                 health.health = 4;
                 DestroyObject(collidableObject);
             }
             else if (AABBCollision(collidableObject) == true
                 && collidableObjects[collidableObject].tag == "Square")
             {
-                health.TakeDamage();
+                //health.TakeDamage();
                 DestroyObject(collidableObject);
             }
         }
@@ -96,7 +113,8 @@ public class CollisionManager : MonoBehaviour
                     {
                         collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
                         animationManager.circleDie();
-                        RainbowEffect();
+
+                        //RainbowEffect();
                         Destroy(item);
                         DestroyObject(sprite);
                     }
@@ -136,53 +154,27 @@ public class CollisionManager : MonoBehaviour
         if (health.health == 0)
         {
             animationManager.Die();
-            do
-            {
-                Timer(5f);
-
-            } while (false);
-            /*else
-            {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            }*/
+            //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
     }
 
-    public bool Timer(float time)
+    public void Rainbow()
     {
-        do
-        {
-            timer -= Time.deltaTime;
-            Debug.Log(time);
+        secondTime = secondTime + 1f * Time.deltaTime;
+        Debug.Log(secondTime);
 
-        } while (time > 0);
-
-        if (time <= 0)
+        if (secondTime >= timeDelay)
         {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-
-    public void RainbowEffect()
-    {
-        Debug.Log("Trying to color switrc");
-        int i = 0;
-        do
-        {
+            secondTime = 0f;
             Color newColor = new Color(Random.value,
-                                       Random.value,
-                                       Random.value);
+                           Random.value,
+                           Random.value);
             playerObject.GetComponent<CollidableObject>().gameLight.gameObject.GetComponent<Light2D>().color = newColor;
-            Debug.Log(i);
-            i++;
-        } while (i < 100);
-
-
+            playerObject.GetComponent<CollidableObject>().gameLight.gameObject.GetComponent<Light2D>().intensity = 10;
+        }
     }
+
+    
     /// <summary>
     /// Check for collision using circle collision
     /// </summary>
@@ -314,12 +306,12 @@ public class CollisionManager : MonoBehaviour
     private void SpawnNewEnemy()
     {
         int objectSelector = Random.Range(1, 101);
-        if (objectSelector < 7)
+        if (objectSelector < 50)
         {
             // spawn health pack
             // but ONLY at the top of the screen
             RandomSpawnZone(2, 3);
-            Spawn(randomXposition, randomYposition, 2, .25f, .25f);
+            Spawn(randomXposition, randomYposition, 3, .25f, .25f);
         }
         else if (objectSelector >= 7 && objectSelector < 50)
         {

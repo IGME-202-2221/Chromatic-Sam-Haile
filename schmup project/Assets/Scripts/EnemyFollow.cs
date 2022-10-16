@@ -50,7 +50,7 @@ public class EnemyFollow : MonoBehaviour
         {
             transform.Rotate(0, 0, 50 * Time.deltaTime, Space.Self); //rotates 50 degrees per second around z axis
         }
-        else if (gameObject.tag == "item")
+        else if (gameObject.tag == "healthPack" || gameObject.tag == "item") 
         {
             transform.Translate(new Vector2(0f, -1f) * speed * Time.deltaTime);
         }

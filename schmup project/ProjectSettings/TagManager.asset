@@ -13,6 +13,7 @@ TagManager:
   - greenBullet
   - redBullet
   - bullet
+  - healthPack
   - item
   layers:
   - Default
