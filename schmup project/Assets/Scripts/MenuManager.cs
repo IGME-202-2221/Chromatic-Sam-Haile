@@ -16,10 +16,6 @@ public class MenuManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
-    public void QuitGame()
-    {
-        Application.Quit();
-    }
     public void Restart()
     {
         ScoreScript.scoreNum = 0;

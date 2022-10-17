@@ -110,8 +110,6 @@ public class CollisionManager : MonoBehaviour
                     {
                         AudioManager.PlaySound("enemyDie");
                         collidableObjects[0].RegisterCollision(collidableObjects[sprite]);
-                        animationManager.circleDie();
-
                         Destroy(item);
                         DestroyObject(sprite);
                     }
