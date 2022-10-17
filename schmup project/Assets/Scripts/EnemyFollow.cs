@@ -2,12 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class EnemyFollow : MonoBehaviour
 {
     public float speed;
     public float shootingRange;
     private Transform player;
+    public Light2D objectLight;
+    float secondTime;
+    float timeDelay;
     //ENEMY SHOOTING FIELDS
     //May or may not implement this
     //public float lineOfSite;
@@ -20,7 +24,10 @@ public class EnemyFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        secondTime = 0f;
+        timeDelay = .5f;
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        //objectLight = GetComponent<Light2D>();
     }
 
     // Update is called once per frame
@@ -50,11 +57,26 @@ public class EnemyFollow : MonoBehaviour
         {
             transform.Rotate(0, 0, 50 * Time.deltaTime, Space.Self); //rotates 50 degrees per second around z axis
         }
-        else if (gameObject.tag == "healthPack" || gameObject.tag == "item") 
+        else if (gameObject.tag == "healthPack" || gameObject.tag == "item")
         {
             transform.Translate(new Vector2(0f, -1f) * speed * Time.deltaTime);
-        }
 
+            // create the rainbow effect on the star item
+            if (gameObject.tag == "item")
+            {
+                secondTime = secondTime + 1f * Time.deltaTime;
+                if (secondTime >= timeDelay)
+                {
+                    secondTime = 0f;
+                    Color newColor = new Color(Random.value,
+                                          Random.value,
+                                          Random.value);
+                    objectLight.color = newColor;
+                    objectLight.intensity = 7;
+
+                }
+            }
+        }
     }
 
     private void OnDrawGizmosSelected()

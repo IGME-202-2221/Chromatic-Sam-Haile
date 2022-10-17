@@ -34,7 +34,7 @@ public class CollidableObject : MonoBehaviour
         //100 points for circle
         if (other.tag == "Circle")
         {
-            ScoreScript.scoreNum += 100;
+            ScoreScript.scoreNum += 50;
             if (ScoreScript.highscoreNum < ScoreScript.scoreNum)
             {
                 ScoreScript.highscoreNum = ScoreScript.scoreNum;
@@ -43,7 +43,25 @@ public class CollidableObject : MonoBehaviour
         // 200 points for square
         else if(other.tag == "Square")
         {
-            ScoreScript.scoreNum += 200;
+            ScoreScript.scoreNum += 75;
+            if (ScoreScript.highscoreNum < ScoreScript.scoreNum)
+            {
+                ScoreScript.highscoreNum = ScoreScript.scoreNum;
+            }
+        }
+        // 100 points for square
+        else if (other.tag == "item")
+        {
+            ScoreScript.scoreNum += 100;
+            if (ScoreScript.highscoreNum < ScoreScript.scoreNum)
+            {
+                ScoreScript.highscoreNum = ScoreScript.scoreNum;
+            }
+        }
+        // 25 points for health pack
+        else if (other.tag == "item")
+        {
+            ScoreScript.scoreNum += 25;
             if (ScoreScript.highscoreNum < ScoreScript.scoreNum)
             {
                 ScoreScript.highscoreNum = ScoreScript.scoreNum;

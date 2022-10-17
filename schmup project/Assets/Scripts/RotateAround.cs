@@ -81,6 +81,7 @@ public class RotateAround : MonoBehaviour
         {
             canFire = false;
             var cloneBullet = Instantiate(greenBullet, bulletTransform.position, Quaternion.identity);
+            AudioManager.PlaySound("shoot");
             greenBulletQueue.Enqueue(cloneBullet);
         }
         // if right click fire red bullet
@@ -88,6 +89,7 @@ public class RotateAround : MonoBehaviour
         {
             canFire = false;
             var cloneBullet = Instantiate(redBullet, bulletTransform.position, Quaternion.identity);
+            AudioManager.PlaySound("shoot");
             redBulletQueue.Enqueue(cloneBullet);
         }
     }
