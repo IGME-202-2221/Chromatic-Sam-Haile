@@ -5,10 +5,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
+    public Text pointsText;
+    public ScoreScript scoreScript;
+    public TextMeshProUGUI playText, controlsText, quitText, backText, restartText, quitTextTwo;
 
-    public TextMeshProUGUI playText, controlsText, quitText, backText;
     public void PlayGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
@@ -16,8 +18,17 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("Quit");
         Application.Quit();
+    }
+    public void Restart()
+    {
+        ScoreScript.scoreNum = 0;
+        SceneManager.LoadScene(1);
+    }
+
+    public void MainMenuScreen()
+    {
+        SceneManager.LoadScene(0);
     }
 
     public void ChangeColorCyan(TextMeshProUGUI text)
